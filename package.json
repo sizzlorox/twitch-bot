@@ -1,0 +1,25 @@
+{
+  "name": "sizz-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bot": "index.js",
+    "web": "snowpack dev --reload --polyfill-node",
+    "build": "snowpack build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "say": "^0.16.0",
+    "solid-js": "^0.19.3",
+    "tmi.js": "^1.5.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@snowpack/plugin-babel": "^2.1.0",
+    "babel-preset-solid": "^0.19.3",
+    "dotenv": "^8.2.0",
+    "snowpack": "^2.10.3"
+  }
+}
