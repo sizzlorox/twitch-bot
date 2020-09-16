@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bot": "index.js",
+    "bot": "node index.js",
     "web": "snowpack dev --reload --polyfill-node",
     "build": "snowpack build",
     "lint": "prettier --check .",

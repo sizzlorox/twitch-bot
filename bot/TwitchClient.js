@@ -1,5 +1,5 @@
-import tmi from "tmi.js";
-import commands from "./data/commands";
+const tmi = require('tmi.js');
+const commands = require('./data/commands');
 
 class TwitchClient {
   constructor(opts) {
