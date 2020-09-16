@@ -1,23 +1,21 @@
-// import tmi from 'tmi.js';
-// import commands from './data/commands';
-const tmi = require('tmi.js');
-const commands = require('./data/commands');
+import tmi from "tmi.js";
+import commands from "./data/commands";
 
 class TwitchClient {
   constructor(opts) {
     this.client = new tmi.client(opts);
-    this.client.on('message', this.onMessageHandler);
-    this.client.on('connected', this.onConnectedHandler);
-    this.client.on('subscription', this.onSubHandler);
-    this.client.on('submysterygift', this.onRandomGiftSubHandler);
-    this.client.on('subgift', this.onGiftSubHandler);
-    this.client.on('resub', this.onResubHandler);
-    this.client.on('raided', this.onRaidHandler);
-    this.client.on('cheer', this.onCheerHandler);
+    this.client.on("message", this.onMessageHandler);
+    this.client.on("connected", this.onConnectedHandler);
+    this.client.on("subscription", this.onSubHandler);
+    this.client.on("submysterygift", this.onRandomGiftSubHandler);
+    this.client.on("subgift", this.onGiftSubHandler);
+    this.client.on("resub", this.onResubHandler);
+    this.client.on("raided", this.onRaidHandler);
+    this.client.on("cheer", this.onCheerHandler);
   }
 
   connect = () => {
-    console.log('Twitch Bot Connecting');
+    console.log("Twitch Bot Connecting");
     this.client.connect();
   };
 
@@ -32,9 +30,22 @@ class TwitchClient {
 
   onResubHandler = (channel, username, months, message, context, methods) => {};
 
-  onGiftSubHandler = (channel, username, streakMonths, recipient, methods, context) => {};
+  onGiftSubHandler = (
+    channel,
+    username,
+    streakMonths,
+    recipient,
+    methods,
+    context
+  ) => {};
 
-  onRandomGiftSubHandler = (channel, username, numbOfSubs, methods, context) => {};
+  onRandomGiftSubHandler = (
+    channel,
+    username,
+    numbOfSubs,
+    methods,
+    context
+  ) => {};
 
   onSubHandler = (channel, username, method, message, context) => {};
 
@@ -43,7 +54,7 @@ class TwitchClient {
 
     // TODO: Sanitize
     const sanitizedMsg = msg.trim();
-    if (!sanitizedMsg.startsWith('!')) {
+    if (!sanitizedMsg.startsWith("!")) {
       return;
     }
     return this.onCommandHandler({
@@ -58,7 +69,5 @@ class TwitchClient {
     const cmd = split[0];
     return commands[cmd](this.client, split[1].trim(), { channel });
   };
-
-};
-// export default TwitchClient;
+}
 module.exports = TwitchClient;

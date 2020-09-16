@@ -1,5 +1,4 @@
-// export default {
-module.exports = {
+export default {
   "!say": (ctx, parsedMsg, metadata) => {
     const { channel } = metadata;
     return ctx.say(channel, `You said ${parsedMsg}`);

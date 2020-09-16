@@ -6,7 +6,9 @@
   "scripts": {
     "bot": "index.js",
     "web": "snowpack dev --reload --polyfill-node",
-    "build": "snowpack build"
+    "build": "snowpack build",
+    "lint": "prettier --check .",
+    "clean": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "@snowpack/plugin-babel": "^2.1.0",
     "babel-preset-solid": "^0.19.3",
     "dotenv": "^8.2.0",
+    "prettier": "2.1.2",
     "snowpack": "^2.10.3"
   }
 }
