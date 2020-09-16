@@ -1,5 +1,6 @@
 const tmi = require('tmi.js');
 const commands = require('./data/commands');
+const tts = require('./data/tts');
 
 class TwitchClient {
   constructor(opts) {
@@ -12,6 +13,7 @@ class TwitchClient {
     this.client.on("resub", this.onResubHandler);
     this.client.on("raided", this.onRaidHandler);
     this.client.on("cheer", this.onCheerHandler);
+    this.ttsTriggers = Object.keys(tts);
   }
 
   connect = () => {
@@ -54,14 +56,22 @@ class TwitchClient {
 
     // TODO: Sanitize
     const sanitizedMsg = msg.trim();
-    if (!sanitizedMsg.startsWith("!")) {
-      return;
-    }
-    return this.onCommandHandler({
+    const msgPayload = {
       channel,
       context,
       msg: sanitizedMsg,
-    });
+    };
+    if (!sanitizedMsg.startsWith("!")) {
+      this.onTTSHandler(msgPayload);
+      return;
+    }
+    return this.onCommandHandler(msgPayload);
+  };
+
+  onTTSHandler = ({ channel, context, msg }) => {
+    const ttsIndex = this.ttsTriggers.findIndex(key => msg.includes(key));
+    if (ttsIndex === -1) return;
+    tts[this.ttsTriggers[ttsIndex]]();
   };
 
   onCommandHandler = ({ channel, context, msg }) => {
