@@ -1,11 +1,9 @@
 const say = require('say');
 
-const VOICE = 'Cellos';
-
 module.exports = {
-  BibleThump: () => say.speak('awww', VOICE, 0.2),
-  LUL: () => say.speak('ha ha ha ha', VOICE, 1),
-  weSmart: () => say.speak('big brain', VOICE, 0.1),
-  HeyGuys: () => say.speak('henlo', VOICE, 1),
-  PogChamp: () => say.speak('poggers', VOICE, 1),
+  BibleThump: () => say.speak('awww', process.env.TTS_VOICE, 0.2),
+  LUL: () => say.speak('ha ha ha ha', process.env.TTS_VOICE, 1),
+  weSmart: () => say.speak('big brain', process.env.TTS_VOICE, 0.1),
+  HeyGuys: () => say.speak('henlo', process.env.TTS_VOICE, 1),
+  PogChamp: () => say.speak('poggers', process.env.TTS_VOICE, 1),
 };

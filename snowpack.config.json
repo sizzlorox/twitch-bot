@@ -1,5 +1,5 @@
 {
-  "install": ["tmi.js"],
+  "install": ["solid-router"],
   "mount": {
     "public": "/",
     "src": "/_dist_"

@@ -76,8 +76,8 @@ class TwitchClient {
 
   onCommandHandler = ({ channel, context, msg }) => {
     const split = msg.split(/ (.*)/g);
-    const cmd = split[0];
-    return commands[cmd](this.client, split[1].trim(), { channel });
+    const cmd = commands[split[0]];
+    return cmd && cmd(this.client, split[1].trim(), { channel });
   };
 }
 module.exports = TwitchClient;
