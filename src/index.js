@@ -1,7 +1,4 @@
-import { render } from "solid-js/dom";
-import { ContextProvider, Router, Route } from 'solid-router';
-// TODO: Move to vue or react, solid is too new
-
+import { render } from 'solid-js/dom';
 
 const NavBar = () => {
   return (
@@ -86,18 +83,7 @@ const NavBar = () => {
 
 const App = () => {
   return (
-    <ContextProvider>
-      <div>
-        <Router fallback={<p>404 Page</p>}>
-          <Route path="/">
-            <p>HomePage</p>
-          </Route>
-          <Route path="/stream">
-            <NavBar />
-          </Route>
-        </Router>
-      </div>
-    </ContextProvider>
+    <NavBar />
   );
 };
 render(() => <App />, document.getElementById("app"));

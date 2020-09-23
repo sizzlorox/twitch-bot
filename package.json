@@ -15,7 +15,6 @@
   "dependencies": {
     "say": "^0.16.0",
     "solid-js": "^0.19.3",
-    "solid-router": "^0.3.3",
     "tmi.js": "^1.5.0"
   },
   "devDependencies": {
