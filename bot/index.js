@@ -1,5 +1,5 @@
 require('dotenv').config();
-const TC = require('./bot/TwitchClient');
+const TC = require('./TwitchClient');
 
 const opts = {
   identity: {

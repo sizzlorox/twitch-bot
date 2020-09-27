@@ -1,8 +1,4 @@
 {
-  "install": ["solid-router"],
-  "mount": {
-    "public": "/",
-    "src": "/_dist_"
-  },
-  "plugins": ["@snowpack/plugin-babel"]
+  "plugins": ["@snowpack/plugin-vue"],
+  "extends": "@snowpack/app-scripts-vue"
 }

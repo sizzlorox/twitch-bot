@@ -9,7 +9,7 @@
 
 # Techstack
   * Snowpack
-  * SolidJS
+  * VueJS
   * tmi.js
 
 # Requirements

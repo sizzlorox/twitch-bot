@@ -2,25 +2,25 @@
   "name": "sizz-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "bot": "node index.js",
-    "web": "snowpack dev --reload --polyfill-node",
+    "bot": "node ./bot/index.js",
+    "web": "snowpack dev --reload",
     "build": "snowpack build",
     "lint": "prettier --check .",
     "clean": "prettier --write ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "sizzlorox",
+  "license": "MIT",
   "dependencies": {
     "say": "^0.16.0",
-    "solid-js": "^0.19.3",
-    "tmi.js": "^1.5.0"
+    "tmi.js": "^1.5.0",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-beta.12"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@snowpack/plugin-babel": "^2.1.0",
-    "babel-preset-solid": "^0.19.3",
+    "@snowpack/app-scripts-vue": "^1.8.5",
+    "@snowpack/plugin-vue": "^2.2.0",
     "dotenv": "^8.2.0",
     "prettier": "2.1.2",
     "snowpack": "^2.10.3"
