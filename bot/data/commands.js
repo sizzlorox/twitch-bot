@@ -1,7 +1,13 @@
 const say = require('say');
 
+let CAN_TTS = true;
+
 module.exports = {
-  "!say": (ctx, parsedMsg, metadata) => say.speak(parsedMsg, process.env.TTS_VOICE, 1),
+  "!say": (ctx, parsedMsg, metadata) => {
+    if (!CAN_TTS) return;
+    CAN_TTS = false;
+    return say.speak(parsedMsg, process.env.TTS_VOICE, 1, () => CAN_TTS = true);
+  },
   // -------------------------------------------------------------------------------------------------------
   "!shoutout": (ctx, parsedMsg, metadata) => {
     const { channel, mod } = metadata;
