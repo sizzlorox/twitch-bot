@@ -6,6 +6,8 @@
   * Dueling peoples
   * Bot Dashboard
   * Bot Stream Interface
+  * Ban list for !say command
+  * Try getting emotes from CDN or something???? (twitch api maybe)
 
 # Techstack
   * Snowpack
