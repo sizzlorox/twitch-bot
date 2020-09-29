@@ -1,10 +1,13 @@
-import { createApp } from "vue";
+import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import App from "./App.vue";
+import App from './App.vue';
+import Home from './Home.vue';
+import Stream from './Stream.vue';
 
 const routes = [
-  { path: '/', component: App },
+  { path: '/', component: Home },
+  { path: '/stream', component: Stream },
 ];
 
 const router = createRouter({
@@ -12,6 +15,6 @@ const router = createRouter({
   routes,
 });
 
-const app = createApp({});
+const app = createApp(App);
 app.use(router);
-app.mount("#app");
+app.mount('#app');

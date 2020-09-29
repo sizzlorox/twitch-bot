@@ -1,65 +1,43 @@
 <template>
-  <div class="App">
-    <header class="App-header">
-      <p>
-        Edit
-        <code>src/App.vue</code> and save to reload.
-      </p>
-      <a
-        class="App-link"
-        href="https://vuejs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >{{ message }}</a>
-    </header>
-    <h1>Hello App!</h1>
-    <p>
-      <router-link to="/">Go to Home</router-link>
-      <router-link to="/about">Go to About</router-link>
-    </p>
-    <router-view></router-view>
+  <div class="app-container">
+    <nav class="nav">
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/stream">Stream Interface</router-link>
+    </nav>
+    <router-view class="app-view"></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      message: "Learn Vue"
-    };
-  }
 };
 </script>
 
-<style>
-.App {
-  text-align: center;
-}
-.App-header {
-  background-color: #f9f6f6;
-  color: #32485f;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-.App-link {
-  color: #00c185;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  margin-bottom: 1rem;
-  animation: App-logo-spin infinite 1.6s ease-in-out alternate;
-}
-@keyframes App-logo-spin {
-  from {
-    transform: scale(1);
+<style lang="scss">
+  @import 'src/css/variables.scss';
+  .app-container {
+    display: flex;
+    flex-direction: column;
   }
-  to {
-    transform: scale(1.06);
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: $primary-background;
+
+    height: 48px;
+    min-height: 48px;
+
+    a {
+      padding: 0 8px;
+      color: $secondary;
+    }
   }
-}
+
+  .app-view {
+    height: calc(100vh - 48px);
+    background-color: $secondary-background;
+  }
 </style>
