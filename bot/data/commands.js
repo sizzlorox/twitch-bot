@@ -28,7 +28,7 @@ module.exports = {
 
     return ctx.say(
       channel,
-      `Check out our discord at https://discord.gg/${process.env.DISCORD_CHANNEL}`,
+      `Check out ${channel}'s discord at https://discord.gg/${process.env.DISCORD_CHANNEL}`,
     )
   },
   // -------------------------------------------------------------------------------------------------------
