@@ -77,7 +77,8 @@ class TwitchClient {
   onCommandHandler = ({ channel, context, msg }) => {
     const split = msg.split(/ (.*)/g);
     const cmd = commands[split[0]];
-    return cmd && cmd(this.client, split[1].trim(), { channel, mod: context.mod });
+    const isStreamer = Object.keys(context.badges).includes('broadcaster');
+    return cmd && cmd(this.client, split[1] && split[1].trim(), { channel, mod: context.mod, isStreamer });
   };
 }
 module.exports = TwitchClient;
