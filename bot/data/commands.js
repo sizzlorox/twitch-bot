@@ -24,12 +24,12 @@ module.exports = {
   // -------------------------------------------------------------------------------------------------------
   "!discord": (ctx, parsedMsg, metadata) => {
     const { channel } = metadata;
-    if (!process.env.DISCORD_CHANNEL) return;
+    if (!process.env.CHANNEL_NAME || !process.env.DISCORD_CHANNEL) return;
 
     return ctx.say(
       channel,
-      `Check out ${channel}'s discord at https://discord.gg/${process.env.DISCORD_CHANNEL}`,
-    )
+      `Check out ${process.env.CHANNEL_NAME}'s discord at https://discord.gg/${process.env.DISCORD_CHANNEL}`,
+    );
   },
   // -------------------------------------------------------------------------------------------------------
 };

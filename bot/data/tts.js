@@ -1,4 +1,4 @@
-const say = require('say');
+import say from 'say';
 
 let CAN_TTS = true;
 
@@ -11,7 +11,7 @@ const handleTTS = (msg, speed) => {
   return say.speak(msg, process.env.TTS_VOICE, speed, ttsCallback);
 }
 
-module.exports = {
+export default {
   BibleThump: () => handleTTS('awww', 0.2),
   LUL: () => handleTTS('ha ha ha a', 1),
   weSmart: () => handleTTS('big brain', 0.1),

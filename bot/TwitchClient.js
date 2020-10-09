@@ -1,6 +1,7 @@
 const tmi = require('tmi.js');
 const commands = require('./data/commands');
 const tts = require('./data/tts');
+const periodic = require('./data/periodic');
 
 class TwitchClient {
   constructor(opts) {
@@ -14,6 +15,9 @@ class TwitchClient {
     this.client.on("raided", this.onRaidHandler);
     this.client.on("cheer", this.onCheerHandler);
     this.ttsTriggers = Object.keys(tts);
+    if (process.env.PERIODIC_DELAY) {
+      this.periodicInterval = setInterval(() => this.onPeriodicHandler(), 60000 * Number(process.env.PERIODIC_DELAY));
+    }
   }
 
   connect = () => {
@@ -74,6 +78,12 @@ class TwitchClient {
     tts[this.ttsTriggers[ttsIndex]]();
   };
 
+  onPeriodicHandler = () => {
+    const msgs = Object.keys(periodic);
+    const rand = Math.floor(Math.random() * msgs.length);
+    return periodic[msgs[rand]](this.client);
+  };
+
   onCommandHandler = ({ channel, context, msg }) => {
     const split = msg.split(/ (.*)/g);
     const cmd = commands[split[0]];
@@ -81,4 +91,4 @@ class TwitchClient {
     return cmd && cmd(this.client, split[1] && split[1].trim(), { channel, mod: context.mod, isStreamer });
   };
 }
-module.exports = TwitchClient;
+export default TwitchClient;
