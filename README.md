@@ -8,6 +8,7 @@
   * Bot Stream Interface
   * Ban list for !say command
   * Try getting emotes from CDN or something???? (twitch api maybe)
+  * Make sure bot connects once
 
 # Techstack
   * Snowpack

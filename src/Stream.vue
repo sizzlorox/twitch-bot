@@ -1,11 +1,28 @@
 <template>
   <div class="stream-container">
-    <div class="stream-view"></div>
+    <div class="stream-view">
+      <div class="chat-container">
+        <div class="chat-message" v-for="msg in recentMessages" :key="msg">
+          {{ msg }}
+        </div>
+      </div>
+    </div>
     <div class="bottom-bar">
-      reeeeeeeeee
+      {{ recentMessages ? recentMessages[0] : 'reee' }}
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['recentMessages'],
+  data: function() {
+    return {
+
+    };
+  },
+}
+</script>
 
 <style lang="scss" scoped>
   @import 'src/css/variables.scss';

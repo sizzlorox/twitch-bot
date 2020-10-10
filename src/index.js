@@ -7,7 +7,7 @@ import Stream from './Stream.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/stream', component: Stream },
+  { path: '/stream', component: Stream, props: true },
 ];
 
 const router = createRouter({

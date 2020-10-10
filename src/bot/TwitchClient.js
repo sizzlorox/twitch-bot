@@ -1,10 +1,13 @@
-const tmi = require('tmi.js');
-const commands = require('./data/commands');
-const tts = require('./data/tts');
-const periodic = require('./data/periodic');
+import tmi from 'tmi.js';import commands from './data/commands';
+import TextToSpeech from './modules/tts';
+import periodic from './data/periodic';
+
+const {
+  SNOWPACK_PUBLIC_PERIODIC_DELAY,
+} = import.meta.env;
 
 class TwitchClient {
-  constructor(opts) {
+  constructor(opts, appRef) {
     this.client = new tmi.client(opts);
     this.client.on("message", this.onMessageHandler);
     this.client.on("connected", this.onConnectedHandler);
@@ -14,9 +17,16 @@ class TwitchClient {
     this.client.on("resub", this.onResubHandler);
     this.client.on("raided", this.onRaidHandler);
     this.client.on("cheer", this.onCheerHandler);
-    this.ttsTriggers = Object.keys(tts);
-    if (process.env.PERIODIC_DELAY) {
-      this.periodicInterval = setInterval(() => this.onPeriodicHandler(), 60000 * Number(process.env.PERIODIC_DELAY));
+    this.client.tts = TextToSpeech;
+    this.client.tts.initialize();
+    this.appRef = appRef;
+    this.ttsTriggers = Object.keys(this.client.tts.autoTTSTriggers);
+    this.recentMessages = [];
+
+    console.log(opts.test);
+
+    if (SNOWPACK_PUBLIC_PERIODIC_DELAY) {
+      this.periodicInterval = setInterval(() => this.onPeriodicHandler(), 60000 * Number(SNOWPACK_PUBLIC_PERIODIC_DELAY));
     }
   }
 
@@ -66,6 +76,8 @@ class TwitchClient {
       msg: sanitizedMsg,
     };
     if (!sanitizedMsg.startsWith("!")) {
+      this.recentMessages = this.recentMessages.concat(msg).slice(0, 10);
+      this.appRef.$emit('msg', this.recentMessages);
       this.onTTSHandler(msgPayload);
       return;
     }
@@ -75,7 +87,7 @@ class TwitchClient {
   onTTSHandler = ({ channel, context, msg }) => {
     const ttsIndex = this.ttsTriggers.findIndex(key => msg.includes(key));
     if (ttsIndex === -1) return;
-    tts[this.ttsTriggers[ttsIndex]]();
+    return this.client.tts.handleTTS(msg);
   };
 
   onPeriodicHandler = () => {

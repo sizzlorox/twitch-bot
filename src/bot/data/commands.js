@@ -1,21 +1,17 @@
-const say = require('say');
+const {
+  SNOWPACK_PUBLIC_CHANNEL_NAME,
+  SNOWPACK_PUBLIC_DISCORD_CHANNEL,
+} = import.meta.env;
 
-let CAN_TTS = true;
-
-module.exports = {
-  "!say": (ctx, parsedMsg, metadata) => {
-    if (!CAN_TTS) return;
-
-    CAN_TTS = false;
-    return say.speak(parsedMsg, process.env.TTS_VOICE, 1, () => CAN_TTS = true);
-  },
+export default {
+  "!say": (ctx, parsedMsg, metadata) => ctx.tts.handleTTS(parsedMsg),
   // -------------------------------------------------------------------------------------------------------
   "!shoutout": (ctx, parsedMsg, metadata) => {
     const { channel, mod, isStreamer } = metadata;
     if (!mod && !isStreamer || !parsedMsg) return;
 
     const sanitizedUsername = parsedMsg.replace(/@/g, '').trim();
-    say.speak('Hey everyone!', process.env.TTS_VOICE, 1);
+    ctx.tts.handleTTS('Hey everyone!');
     return ctx.say(
       channel,
       `Hey everyone! Check out ${sanitizedUsername}'s channel at https://twitch.tv/${sanitizedUsername.toLowerCase()}`,
@@ -24,11 +20,11 @@ module.exports = {
   // -------------------------------------------------------------------------------------------------------
   "!discord": (ctx, parsedMsg, metadata) => {
     const { channel } = metadata;
-    if (!process.env.CHANNEL_NAME || !process.env.DISCORD_CHANNEL) return;
+    if (!SNOWPACK_PUBLIC_CHANNEL_NAME || !SNOWPACK_PUBLIC_DISCORD_CHANNEL) return;
 
     return ctx.say(
       channel,
-      `Check out ${process.env.CHANNEL_NAME}'s discord at https://discord.gg/${process.env.DISCORD_CHANNEL}`,
+      `Check out ${SNOWPACK_PUBLIC_CHANNEL_NAME}'s discord at https://discord.gg/${SNOWPACK_PUBLIC_DISCORD_CHANNEL}`,
     );
   },
   // -------------------------------------------------------------------------------------------------------

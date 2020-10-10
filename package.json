@@ -13,7 +13,7 @@
   "author": "sizzlorox",
   "license": "MIT",
   "dependencies": {
-    "say": "^0.16.0",
+    "speak-tts": "^2.0.8",
     "tmi.js": "^1.5.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-beta.12"
