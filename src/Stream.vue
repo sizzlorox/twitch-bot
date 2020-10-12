@@ -2,24 +2,26 @@
   <div class="stream-container">
     <div class="stream-view">
       <div class="chat-container">
-        <div class="chat-message" v-for="msg in recentMessages" :key="msg">
+        <div class="chat-message" v-for="(msg, index) in parseMessages" :key="index">
           {{ msg }}
         </div>
       </div>
     </div>
     <div class="bottom-bar">
-      {{ recentMessages ? recentMessages[0] : 'reee' }}
+      reeeee
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['recentMessages'],
-  data: function() {
-    return {
-
-    };
+  data: () => ({
+    recentMessages: localStorage.getItem('recentMessages'),
+  }),
+  computed: {
+    parseMessages() {
+      return JSON.parse(this.recentMessages);
+    }
   },
 }
 </script>

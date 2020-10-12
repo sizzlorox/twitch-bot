@@ -1,4 +1,5 @@
-import tmi from 'tmi.js';import commands from './data/commands';
+import tmi from 'tmi.js';
+import commands from './data/commands';
 import TextToSpeech from './modules/tts';
 import periodic from './data/periodic';
 
@@ -7,7 +8,7 @@ const {
 } = import.meta.env;
 
 class TwitchClient {
-  constructor(opts, appRef) {
+  constructor(opts) {
     this.client = new tmi.client(opts);
     this.client.on("message", this.onMessageHandler);
     this.client.on("connected", this.onConnectedHandler);
@@ -18,12 +19,9 @@ class TwitchClient {
     this.client.on("raided", this.onRaidHandler);
     this.client.on("cheer", this.onCheerHandler);
     this.client.tts = TextToSpeech;
-    this.client.tts.initialize();
-    this.appRef = appRef;
+    this.client.tts.getInstance();
     this.ttsTriggers = Object.keys(this.client.tts.autoTTSTriggers);
     this.recentMessages = [];
-
-    console.log(opts.test);
 
     if (SNOWPACK_PUBLIC_PERIODIC_DELAY) {
       this.periodicInterval = setInterval(() => this.onPeriodicHandler(), 60000 * Number(SNOWPACK_PUBLIC_PERIODIC_DELAY));
@@ -76,8 +74,8 @@ class TwitchClient {
       msg: sanitizedMsg,
     };
     if (!sanitizedMsg.startsWith("!")) {
-      this.recentMessages = this.recentMessages.concat(msg).slice(0, 10);
-      this.appRef.$emit('msg', this.recentMessages);
+      this.recentMessages = this.recentMessages.concat([msg]).slice(0, 10);
+      localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
       this.onTTSHandler(msgPayload);
       return;
     }
@@ -99,8 +97,8 @@ class TwitchClient {
   onCommandHandler = ({ channel, context, msg }) => {
     const split = msg.split(/ (.*)/g);
     const cmd = commands[split[0]];
-    const isStreamer = Object.keys(context.badges).includes('broadcaster');
-    return cmd && cmd(this.client, split[1] && split[1].trim(), { channel, mod: context.mod, isStreamer });
+    const isStreamer = context?.badges && Object.keys(context.badges).includes('broadcaster');
+    return cmd && cmd(this.client, split[1] && split[1].trim(), { channel, mod: context?.mod, isStreamer });
   };
 }
 export default TwitchClient;

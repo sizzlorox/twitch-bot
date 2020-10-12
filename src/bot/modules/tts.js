@@ -32,8 +32,9 @@ class TextToSpeech {
     };
   }
 
-  initialize = () => {
+  getInstance = () => {
     if (this.speech) return this.speech;
+    console.log('tts initialized');
 
     this.speech = new Speech() // will throw an exception if not browser supported
     if (!this.speech.hasBrowserSupport()) { // returns a boolean
