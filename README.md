@@ -4,11 +4,11 @@
 # TODO List
   * Add module for using twitch API
   * Dueling peoples
-  * Bot Dashboard
-  * Bot Stream Interface
+  * Bot Dashboard (working on it)
+  * Bot Stream Interface (working on it)
   * Ban list for !say command
-  * Try getting emotes from CDN or something???? (twitch api maybe)
-  * Make sure bot connects once
+  * Try getting emotes (working on it)
+  * Sanitize messages
 
 # Techstack
   * Snowpack

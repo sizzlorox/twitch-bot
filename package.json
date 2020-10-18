@@ -13,6 +13,9 @@
   "author": "sizzlorox",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-sse": "^0.5.3",
     "speak-tts": "^2.0.8",
     "tmi.js": "^1.5.0",
     "vue": "^3.0.0",

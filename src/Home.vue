@@ -9,30 +9,8 @@
 </template>
 
 <script>
-import TC from './bot/TwitchClient';
-
-const {
-  SNOWPACK_PUBLIC_USERNAME,
-  SNOWPACK_PUBLIC_OAUTH_TOKEN,
-  SNOWPACK_PUBLIC_CHANNEL_NAME,
-} = import.meta.env;
-
 export default {
   data: function() {
-    const opts = {
-      identity: {
-        username: SNOWPACK_PUBLIC_USERNAME,
-        password: SNOWPACK_PUBLIC_OAUTH_TOKEN,
-      },
-      channels: [SNOWPACK_PUBLIC_CHANNEL_NAME],
-    };
-    const client = new TC(opts);
-    return {
-      botConnection: client,
-    }
-  },
-  created: function() {
-    this.botConnection.connect();
   },
 };
 </script>
