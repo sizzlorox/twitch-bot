@@ -2,15 +2,18 @@
   <div class="stream-container">
     <div class="stream-view">
       <div class="chat-container">
-        <div class="chat-message" v-for="(msgData, index) in recentMessages" :key="index">
-          <span :style="{ color: msgData.authorColor }">
-            {{ msgData.author }}
-          </span>
-          :&nbsp;
-          <span>
-            {{ msgData.msg }}
-          </span>
-        </div>
+        <transition-group name="fade">
+          <div class="chat-message" v-for="msgData in recentMessages" :key="msgData.id">
+            <span class="author" :style="{ color: msgData.authorColor }">
+              {{ msgData.author }}
+            </span>
+            <span class="colon">
+              :&nbsp;
+            </span>
+            <span class="message" v-html="msgData.msg">
+            </span>
+          </div>
+        </transition-group>
       </div>
     </div>
     <div class="bottom-bar">
@@ -21,6 +24,7 @@
 
 <script>
 import TextToSpeech from './modules';
+// TODO: Get bot port from .env file
 const es = new EventSource('http://localhost:3000/bot');
 
 const listeners = [
@@ -40,33 +44,35 @@ const listeners = [
   {
     event: 'msg',
     func: ({ data, isTrusted }, ctx) => {
-      const { msg, author, authorColor, emotes } = JSON.parse(data);
+      const { id, msg, author, authorColor, emotes } = JSON.parse(data);
       if (!isTrusted) return;
-      // https://static-cdn.jtvnw.net/emoticons/v2/<ID>/default/dark/1.0
-      // {
-      //   "25": [
-      //     "19-23"
-      //   ],
-      //   "86": [
-      //     "8-17"
-      //   ],
-      //   "301182079": [
-      //     "0-6"
-      //   ]
-      // }
+
       let newMsg = msg;
-      const emoteIDs = Object.keys(emotes);
-      // Need better way of replacing emotes >:C
-      Object.values(emotes).forEach(emote => {
-        const spliced = emote[0].split('-');
-        const sliced = msg.slice(0, spliced[0]) + msg.slice(spliced[1] + 1, msg.length);
-        console.log(sliced, emote, spliced);
-      });
+      let newLength = 0;
+      if (![undefined, null].includes(emotes)) {
+        for (const [key, value] of Object.entries(emotes).sort(([,a], [,b]) => a[0].split('-')[0] - b[0].split('-')[0])) {
+          for (const emote of value) {
+            const se = emote.split('-');
+            const start = Number(se[0]) - newLength;
+            const end = Number(se[1]) - newLength;
+
+            const oldLength = newMsg.length;
+            const img = `<img src="https://static-cdn.jtvnw.net/emoticons/v2/${key}/default/dark/1.0"></img>`;
+            newMsg = newMsg.replace(newMsg.substring(start, end + 1), img);
+            newLength += oldLength - newMsg.length;
+          }
+        }
+      }
+
       ctx.recentMessages = ctx.recentMessages.concat([{
+        id,
         author,
-        newMsg,
+        msg: newMsg.trim(),
         authorColor,
-      }]).slice(0, 10);
+      }]);
+      if (ctx.recentMessages.length >= 15) {
+        ctx.recentMessages.shift();
+      }
     },
   },
 ];
@@ -121,13 +127,26 @@ export default {
       border-radius: 4px;
       background: rgba(0, 20, 0, 0.95);
 
-      & > .chat-message {
+      .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+      }
+      .fade-enter-from, .fade-leave-to {
+        opacity: 0;
+      }
+
+      .chat-message {
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
         display: inherit;
+        transition: all .5s ease;
 
         span {
           color: white;
+        }
+
+        .message {
+          display: flex;
+          align-items: center;
         }
       }
     }

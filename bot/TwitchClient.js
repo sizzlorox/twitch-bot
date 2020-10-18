@@ -1,6 +1,7 @@
 const tmi = require('tmi.js');
 const commands = require('./data/commands');
 const periodic = require('./data/periodic');
+const sanitizeHtml = require('sanitize-html');
 
 
 class TwitchClient {
@@ -86,8 +87,7 @@ class TwitchClient {
   onMessageHandler = (channel, context, msg, self) => {
     if (self) return;
 
-    // TODO: Sanitize
-    const sanitizedMsg = msg.trim();
+    const sanitizedMsg = sanitizeHtml(msg.trim());
     const msgPayload = {
       channel,
       context,
@@ -96,6 +96,7 @@ class TwitchClient {
     if (!sanitizedMsg.startsWith("!")) {
       this.client.sse.send(
         {
+          id: context.id,
           msg,
           author: context.username,
           authorColor: context.color,
