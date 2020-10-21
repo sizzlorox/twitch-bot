@@ -7,9 +7,11 @@
   * Bot Dashboard (working on it)
   * Bot Stream Interface (working on it)
   * Ban list for !say command
-  * Chat box as its own route
   * Move TTS to dashboard instead of stream route (OBS Browser plugin not picking up TTS)
   * Support BTTV Emotes (Will need twitch API first) https://api.betterttv.net/3/cached/users/twitch/
+  * Get TTS working from within OBS (might not be possible as tts module we're using does not detect the browser plugin)
+  * ^--- Move out of chat window and into stream dashboard, Add voice enabled status & state
+  * Add ability to change TTS voice
 
 # Techstack
   * Snowpack

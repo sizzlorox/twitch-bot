@@ -3,6 +3,7 @@
     <nav class="nav">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/stream">Stream Interface</router-link>
+      <router-link to="/stream-chat">Stream Chat</router-link>
     </nav>
     <router-view class="inner-app-view"></router-view>
   </div>
