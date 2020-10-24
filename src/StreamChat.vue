@@ -2,8 +2,7 @@
   <div class="chat-container">
     <transition-group name="fade">
       <div class="chat-message" v-for="msgData in recentMessages" :key="msgData.id">
-        <span class="author" :style="{ color: msgData.authorColor }">
-          {{ msgData.author }}
+        <span class="author" v-html="msgData.author" :style="{ color: msgData.authorColor }">
         </span>
         <span class="colon">
           :&nbsp;
@@ -37,11 +36,16 @@ const listeners = [
   {
     event: 'msg',
     func: ({ data, isTrusted }, ctx) => {
-      const { id, msg, author, authorColor, emotes } = JSON.parse(data);
+      const { id, msg, author, authorColor, emotes, badges } = JSON.parse(data);
       if (!isTrusted) return;
 
-      let newMsg = msg;
+      let newMsg = '';
+      let newAuthor = author;
       let newLength = 0;
+      if (badges.length) {
+        newAuthor = badges.map(b => `<img src="${b}"></img>`).join('') + '&nbsp;' + newAuthor;
+      }
+      newMsg += msg;
       if (![undefined, null].includes(emotes)) {
         for (const [key, value] of Object.entries(emotes).sort(([,a], [,b]) => a[0].split('-')[0] - b[0].split('-')[0])) {
           for (const emote of value) {
@@ -59,7 +63,7 @@ const listeners = [
 
       ctx.recentMessages = ctx.recentMessages.concat([{
         id,
-        author,
+        author: newAuthor,
         msg: newMsg.trim(),
         authorColor,
       }]);

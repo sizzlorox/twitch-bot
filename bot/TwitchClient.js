@@ -2,10 +2,19 @@ const tmi = require('tmi.js');
 const commands = require('./data/commands');
 const periodic = require('./data/periodic');
 const sanitizeHtml = require('sanitize-html');
+const request = require('request');
 
 
 class TwitchClient {
   constructor(opts) {
+    this.badgesUrl = 'https://badges.twitch.tv/v1/badges/global/display?language=en';
+    request(this.badgesUrl, (err, response, body) => {
+      if (err || response.statusCode !== 200) {
+        return;
+      }
+      this.badges = JSON.parse(body);
+    });
+
     this.client = new tmi.client(opts);
     this.client.on("message", this.onMessageHandler);
     this.client.on("connected", this.onConnectedHandler);
@@ -101,6 +110,8 @@ class TwitchClient {
           author: context.username,
           authorColor: context.color,
           emotes: context.emotes,
+          badges: Object.entries(context.badges)
+            .map(([badge, version]) => this.badges['badge_sets'][badge].versions[version]['image_url_1x']),
         },
         'msg'
       );
@@ -112,7 +123,10 @@ class TwitchClient {
     return this.onCommandHandler(msgPayload);
   };
 
-  onTTSHandler = ({ msg }) => {
+  onTTSHandler = ({ msg, context }) => {
+    if (context.username === 'buttsbot') {
+      return this.client.sse.send(msg, 'tts');
+    }
     const ttsIndex = Object.keys(this.ttsTriggers)
       .findIndex(key => msg.includes(key));
     if (ttsIndex === -1) return;
