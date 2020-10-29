@@ -3,7 +3,7 @@
     <div class="stream-view">
     </div>
     <div class="bottom-bar">
-      TODO: Move TTS out of stream chat window and into Dashboard, Add TTS Voice State to dashboard
+      TODO: Remove tags from messages, Move TTS out of stream chat window and into Dashboard, Add TTS Voice State to dashboard
     </div>
   </div>
 </template>

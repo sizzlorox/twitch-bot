@@ -9,6 +9,10 @@ const TwitchClient = require('./TwitchClient');
 const app = express();
 const sse = new SSE();
 const client = new TwitchClient({
+  twitchApi: {
+    clientId: process.env.TWITCH_CLIENT_ID,
+    clientSecret: process.env.TWITCH_CLIENT_SECRET,
+  },
   identity: {
     username: process.env.USERNAME,
     password: process.env.OAUTH_TOKEN,

@@ -8,12 +8,29 @@ const request = require('request');
 class TwitchClient {
   constructor(opts) {
     this.badgesUrl = 'https://badges.twitch.tv/v1/badges/global/display?language=en';
-    request(this.badgesUrl, (err, response, body) => {
-      if (err || response.statusCode !== 200) {
+    request(this.badgesUrl, (err, res, body) => {
+      if (err || res.statusCode !== 200) {
         return;
       }
       this.badges = JSON.parse(body);
     });
+    // this.twitchApi = {};
+    // request.post(`https://id.twitch.tv/oauth2/token?client_id=${opts.twitchApi.clientId}&client_secret=${opts.twitchApi.clientSecret}&grant_type=client_credentials&scope=viewing_activity_read`,
+    //   (err, res, body) => {
+    //     if (err || res.statusCode !== 200) {
+    //       return;
+    //     }
+    //     // access_token, expires_in, scope, token_type
+    //     this.twitchApi.auth = JSON.parse(body);
+    //   });
+
+    // request.post('https://api.twitch.tv/helix/webhooks/hub', {
+    //   callback: '',
+    //   mode: 'subscribe',
+    //   topic: 'https://api.twitch.tv/helix/users/follows',
+    //   lease_seconds: '864000',
+    //   secret: 'some secret here',
+    // })
 
     this.client = new tmi.client(opts);
     this.client.on("message", this.onMessageHandler);
@@ -96,7 +113,7 @@ class TwitchClient {
   onMessageHandler = (channel, context, msg, self) => {
     if (self) return;
 
-    const sanitizedMsg = sanitizeHtml(msg.trim());
+    const sanitizedMsg = sanitizeHtml(msg.trim()).replace(/<.+?>/g, '');
     const msgPayload = {
       channel,
       context,
@@ -110,8 +127,10 @@ class TwitchClient {
           author: context.username,
           authorColor: context.color,
           emotes: context.emotes,
-          badges: Object.entries(context.badges)
-            .map(([badge, version]) => this.badges['badge_sets'][badge].versions[version]['image_url_1x']),
+          badges: context.badges
+            ? Object.entries(context.badges)
+                .map(([badge, version]) => this.badges['badge_sets'][badge].versions[version]['image_url_1x'])
+            : [],
         },
         'msg'
       );
