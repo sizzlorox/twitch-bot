@@ -2,12 +2,12 @@ import Speech from 'speak-tts';
 
 class TextToSpeech {
   constructor() {
-    console.debug('tts initialized');
     this.speech = new Speech();
     if (!this.speech.hasBrowserSupport()) {
       console.error('This browser does not support text to speech! This feature is disabled!');
       this.speech = undefined;
       this.voices = undefined;
+      return;
     }
     this.speech.init()
       .then(voices => {

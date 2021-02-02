@@ -2,13 +2,13 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 import App from './App.vue';
-import Home from './Home.vue';
+import Dashboard from './Dashboard.vue';
 import Stream from './Stream.vue';
 import StreamChat from './StreamChat.vue';
 
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Dashboard },
   { path: '/stream', component: Stream },
   { path: '/stream-chat', component: StreamChat },
 ];

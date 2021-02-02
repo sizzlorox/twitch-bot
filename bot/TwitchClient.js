@@ -5,6 +5,41 @@ const sanitizeHtml = require('sanitize-html');
 const request = require('request');
 
 
+function countWorlSyl(word) {
+  word = word.toLowerCase();
+  if(word.length <= 3) { return 1; }
+    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    return word.match(/[aeiouy]{1,2}/g).length;
+}
+
+function genHaiku(sentence) {
+  let totalSylCount = 0;
+  const list5 = [];
+  const list7 = [];
+  const list5_2 = [];
+  sentence.split(' ').forEach(word => {
+    const sylCount = countWorlSyl(word);
+    totalSylCount += sylCount;
+    if (totalSylCount <= 5) {
+      list5.push(word);
+    }
+    if (totalSylCount > 5 && totalSylCount <= 12) {
+      list7.push(word);
+    }
+    if (totalSylCount > 12 && totalSylCount <= 17) {
+      list5_2.push(word);
+    }
+  });
+
+  console.log(`Syllable Count: ${totalSylCount} - Is Haiku: ${totalSylCount === 17}`);
+  if (totalSylCount === 17) {
+    const haiku = list5.join(' ').trim() + '... ' + list7.join(' ').trim() + '... ' + list5_2.join(' ').trim() + '.';
+    console.log('haiku:', haiku);
+    return haiku;
+  }
+}
+
 class TwitchClient {
   constructor(opts) {
     this.badgesUrl = 'https://badges.twitch.tv/v1/badges/global/display?language=en';
@@ -117,9 +152,13 @@ class TwitchClient {
     const msgPayload = {
       channel,
       context,
-      msg: sanitizedMsg,
+      msg: msg.trim(),
     };
     if (!sanitizedMsg.startsWith("!")) {
+      const haiku = genHaiku(sanitizedMsg);
+      if (haiku) {
+        this.client.sse.send(haiku, 'tts')
+      }
       this.client.sse.send(
         {
           id: context.id,

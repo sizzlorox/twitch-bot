@@ -15,26 +15,13 @@
 </template>
 
 <script>
-import TextToSpeech from './modules';
 // TODO: Get bot port from .env file
 const es = new EventSource('http://localhost:3000/bot');
 
 const listeners = [
   {
-    event: 'tts',
-    // ctx is vue component context
-    func: ({ data, isTrusted }, ctx) => {
-      if (!isTrusted) return;
-
-      const parsedData = JSON.parse(data);
-      if (typeof parsedData === 'object') {
-        return ctx.tts.handleTTS(parsedData.msg, parsedData.speed);
-      }
-      ctx.tts.handleTTS(data);
-    },
-  },
-  {
     event: 'msg',
+    // ctx is vue component context
     func: ({ data, isTrusted }, ctx) => {
       const { id, msg, author, authorColor, emotes, badges } = JSON.parse(data);
       if (!isTrusted) return;
@@ -78,7 +65,6 @@ export default {
   data: function() {
     return {
       recentMessages: [],
-      tts: new TextToSpeech(),
     };
   },
   created: function () {
