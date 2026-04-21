@@ -4,13 +4,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import Dashboard from './Dashboard.vue';
 import Stream from './Stream.vue';
-import StreamChat from './StreamChat.vue';
-
+import RPG from './RPG.vue';
 
 const routes = [
   { path: '/', component: Dashboard },
   { path: '/stream', component: Stream },
-  { path: '/stream-chat', component: StreamChat },
+  { path: '/rpg', component: RPG },
 ];
 
 const router = createRouter({
@@ -18,18 +17,7 @@ const router = createRouter({
   routes,
 });
 
-const app = createApp(App, {
-  mixins: [{
-    beforeCreate() {
-      console.log("beforeCreate", this._uid);
-      target = this;
-    },
-    created() {
-      console.log("created", this._uid);
-      target = undefined;
-    }
-  }],
-});
+const app = createApp(App);
 
 app.use(router);
 app.mount('#app');

@@ -1,38 +1,51 @@
-import Speech from 'speak-tts';
-
 class TextToSpeech {
   constructor() {
-    this.speech = new Speech();
-    if (!this.speech.hasBrowserSupport()) {
-      console.error('This browser does not support text to speech! This feature is disabled!');
-      this.speech = undefined;
-      this.voices = undefined;
+    this.synth = typeof window !== 'undefined' ? window.speechSynthesis : null;
+    this.queue = [];
+    this.speaking = false;
+
+    if (!this.synth) {
+      console.error('[TTS] Browser does not support SpeechSynthesis. TTS disabled.');
+      this.synth = null;
+    }
+  }
+
+  _clean(text) {
+    return text
+      .replace(/https?:\/\/\S+/gi, '')  // strip URLs
+      .replace(/\s{2,}/g, ' ')          // collapse whitespace
+      .trim()
+      .slice(0, 200);                    // cap length
+  }
+
+  speak(text, speed = 1) {
+    if (!this.synth) return;
+    const cleaned = this._clean(String(text));
+    if (!cleaned) return;
+
+    this.queue.push({ text: cleaned, speed });
+    if (!this.speaking) this._next();
+  }
+
+  _next() {
+    if (!this.queue.length) {
+      this.speaking = false;
       return;
     }
-    this.speech.init()
-      .then(voices => {
-        this.voices = voices;
-      })
-      .catch(e => console.error('An error occured while initializing : ', e));
+    this.speaking = true;
+    const { text, speed } = this.queue.shift();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.rate = Math.max(0.1, Math.min(speed, 10));
+    utt.onend = () => this._next();
+    utt.onerror = () => this._next();
+    this.synth.speak(utt);
   }
 
-  handleTTS = (msg, speed = 1) => {
-    if (!this.speech) return;
-
-    this.speech.setRate(speed);
-
-    return this.speech.speak({
-      text: msg,
-      queue: false,
-      listeners: {
-        onstart: () => console.debug('Start utterance'),
-        onend: () => console.debug('End utterance'),
-        onresume: () => console.debug('Resume utterance'),
-        onboundary: (event) => console.debug(event.name + ' boundary reached after ' + event.elapsedTime + ' milliseconds.')
-      }
-    }).then(() => console.debug('Success !'))
-      .catch(e => console.error('An error occurred :', e));
+  skip() {
+    this.queue = [];
+    this.synth?.cancel();
+    this.speaking = false;
   }
-
 }
+
 export default TextToSpeech;
