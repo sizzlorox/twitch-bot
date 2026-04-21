@@ -1,0 +1,70 @@
+{
+  "character": {
+    "id": "08ad34d2-4687-4e99-abda-986a02339b15",
+    "name": "warrior",
+    "prompt": "armored warrior knight, heavy plate armor, sword and shield, heroic fantasy RPG character, pixel art game sprite",
+    "size": {
+      "width": 68,
+      "height": 68
+    },
+    "template_id": "mannequin",
+    "directions": 4,
+    "view": "side",
+    "created_at": "2026-04-21T11:53:54.857872+00:00"
+  },
+  "frames": {
+    "rotations": {
+      "south": "rotations/south.png",
+      "west": "rotations/west.png",
+      "east": "rotations/east.png",
+      "north": "rotations/north.png"
+    },
+    "animations": {
+      "cross_punch_attack-e639e896": {
+        "south": [
+          "animations/cross_punch_attack-e639e896/south/frame_000.png",
+          "animations/cross_punch_attack-e639e896/south/frame_001.png",
+          "animations/cross_punch_attack-e639e896/south/frame_002.png",
+          "animations/cross_punch_attack-e639e896/south/frame_003.png",
+          "animations/cross_punch_attack-e639e896/south/frame_004.png",
+          "animations/cross_punch_attack-e639e896/south/frame_005.png"
+        ]
+      },
+      "taking_a_punch-d51a88e0": {
+        "south": [
+          "animations/taking_a_punch-d51a88e0/south/frame_000.png",
+          "animations/taking_a_punch-d51a88e0/south/frame_001.png",
+          "animations/taking_a_punch-d51a88e0/south/frame_002.png",
+          "animations/taking_a_punch-d51a88e0/south/frame_003.png",
+          "animations/taking_a_punch-d51a88e0/south/frame_004.png",
+          "animations/taking_a_punch-d51a88e0/south/frame_005.png"
+        ]
+      },
+      "animating-911e2e60": {
+        "south": [
+          "animations/animating-911e2e60/south/frame_000.png",
+          "animations/animating-911e2e60/south/frame_001.png",
+          "animations/animating-911e2e60/south/frame_002.png",
+          "animations/animating-911e2e60/south/frame_003.png",
+          "animations/animating-911e2e60/south/frame_004.png",
+          "animations/animating-911e2e60/south/frame_005.png",
+          "animations/animating-911e2e60/south/frame_006.png",
+          "animations/animating-911e2e60/south/frame_007.png"
+        ]
+      },
+      "falling_backward-ea0f3604": {
+        "south": [
+          "animations/falling_backward-ea0f3604/south/frame_000.png",
+          "animations/falling_backward-ea0f3604/south/frame_001.png",
+          "animations/falling_backward-ea0f3604/south/frame_002.png",
+          "animations/falling_backward-ea0f3604/south/frame_003.png",
+          "animations/falling_backward-ea0f3604/south/frame_004.png",
+          "animations/falling_backward-ea0f3604/south/frame_005.png",
+          "animations/falling_backward-ea0f3604/south/frame_006.png"
+        ]
+      }
+    }
+  },
+  "export_version": "2.0",
+  "export_date": "2026-04-21T13:53:27.170063"
+}

@@ -1,0 +1,49 @@
+{
+  "idle": {
+    "frameCount": 8,
+    "frames": [
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_000.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_001.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_002.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_003.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_004.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_005.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_006.png",
+      "/assets/avatars/rogue_anims/animations/animating-32eb0391/south/frame_007.png"
+    ]
+  },
+  "attack": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_000.png",
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_001.png",
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_002.png",
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_003.png",
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_004.png",
+      "/assets/avatars/rogue_anims/animations/cross_punch_attack-f1921844/south/frame_005.png"
+    ]
+  },
+  "hit": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_000.png",
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_001.png",
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_002.png",
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_003.png",
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_004.png",
+      "/assets/avatars/rogue_anims/animations/taking_a_punch-68b8a3e6/south/frame_005.png"
+    ]
+  },
+  "death": {
+    "frameCount": 7,
+    "frames": [
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_000.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_001.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_002.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_003.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_004.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_005.png",
+      "/assets/avatars/rogue_anims/animations/falling_backward-83dd7222/south/frame_006.png"
+    ]
+  }
+}

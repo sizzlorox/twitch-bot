@@ -1,0 +1,49 @@
+{
+  "idle": {
+    "frameCount": 8,
+    "frames": [
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_000.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_001.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_002.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_003.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_004.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_005.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_006.png",
+      "/assets/avatars/mage_anims/animations/animating-9e629ca9/south/frame_007.png"
+    ]
+  },
+  "attack": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_000.png",
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_001.png",
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_002.png",
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_003.png",
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_004.png",
+      "/assets/avatars/mage_anims/animations/cross_punch_attack-3b3c6a9a/south/frame_005.png"
+    ]
+  },
+  "hit": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_000.png",
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_001.png",
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_002.png",
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_003.png",
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_004.png",
+      "/assets/avatars/mage_anims/animations/taking_a_punch-2a943eb9/south/frame_005.png"
+    ]
+  },
+  "death": {
+    "frameCount": 7,
+    "frames": [
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_000.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_001.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_002.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_003.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_004.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_005.png",
+      "/assets/avatars/mage_anims/animations/falling_backward-e8f9bc82/south/frame_006.png"
+    ]
+  }
+}

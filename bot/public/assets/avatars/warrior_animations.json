@@ -1,0 +1,49 @@
+{
+  "idle": {
+    "frameCount": 8,
+    "frames": [
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_000.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_001.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_002.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_003.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_004.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_005.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_006.png",
+      "/assets/avatars/warrior_anims/animations/animating-911e2e60/south/frame_007.png"
+    ]
+  },
+  "attack": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_000.png",
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_001.png",
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_002.png",
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_003.png",
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_004.png",
+      "/assets/avatars/warrior_anims/animations/cross_punch_attack-e639e896/south/frame_005.png"
+    ]
+  },
+  "hit": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_000.png",
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_001.png",
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_002.png",
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_003.png",
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_004.png",
+      "/assets/avatars/warrior_anims/animations/taking_a_punch-d51a88e0/south/frame_005.png"
+    ]
+  },
+  "death": {
+    "frameCount": 7,
+    "frames": [
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_000.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_001.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_002.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_003.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_004.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_005.png",
+      "/assets/avatars/warrior_anims/animations/falling_backward-ea0f3604/south/frame_006.png"
+    ]
+  }
+}

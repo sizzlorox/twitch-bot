@@ -1,0 +1,70 @@
+{
+  "character": {
+    "id": "f57a5a7f-2ed7-4234-80dc-23d74d49494a",
+    "name": "goblin",
+    "prompt": "green goblin monster, big ears, sharp teeth, tattered loincloth, beady yellow eyes, small hunched creature, fantasy RPG enemy sprite",
+    "size": {
+      "width": 68,
+      "height": 68
+    },
+    "template_id": "mannequin",
+    "directions": 4,
+    "view": "side",
+    "created_at": "2026-04-21T14:11:49.0677+00:00"
+  },
+  "frames": {
+    "rotations": {
+      "south": "rotations/south.png",
+      "west": "rotations/west.png",
+      "east": "rotations/east.png",
+      "north": "rotations/north.png"
+    },
+    "animations": {
+      "taking_a_punch-8a9a11ef": {
+        "south": [
+          "animations/taking_a_punch-8a9a11ef/south/frame_000.png",
+          "animations/taking_a_punch-8a9a11ef/south/frame_001.png",
+          "animations/taking_a_punch-8a9a11ef/south/frame_002.png",
+          "animations/taking_a_punch-8a9a11ef/south/frame_003.png",
+          "animations/taking_a_punch-8a9a11ef/south/frame_004.png",
+          "animations/taking_a_punch-8a9a11ef/south/frame_005.png"
+        ]
+      },
+      "cross_punch_attack-1bc46529": {
+        "south": [
+          "animations/cross_punch_attack-1bc46529/south/frame_000.png",
+          "animations/cross_punch_attack-1bc46529/south/frame_001.png",
+          "animations/cross_punch_attack-1bc46529/south/frame_002.png",
+          "animations/cross_punch_attack-1bc46529/south/frame_003.png",
+          "animations/cross_punch_attack-1bc46529/south/frame_004.png",
+          "animations/cross_punch_attack-1bc46529/south/frame_005.png"
+        ]
+      },
+      "animating-fd60e903": {
+        "south": [
+          "animations/animating-fd60e903/south/frame_000.png",
+          "animations/animating-fd60e903/south/frame_001.png",
+          "animations/animating-fd60e903/south/frame_002.png",
+          "animations/animating-fd60e903/south/frame_003.png",
+          "animations/animating-fd60e903/south/frame_004.png",
+          "animations/animating-fd60e903/south/frame_005.png",
+          "animations/animating-fd60e903/south/frame_006.png",
+          "animations/animating-fd60e903/south/frame_007.png"
+        ]
+      },
+      "falling_backward-e47b1aeb": {
+        "south": [
+          "animations/falling_backward-e47b1aeb/south/frame_000.png",
+          "animations/falling_backward-e47b1aeb/south/frame_001.png",
+          "animations/falling_backward-e47b1aeb/south/frame_002.png",
+          "animations/falling_backward-e47b1aeb/south/frame_003.png",
+          "animations/falling_backward-e47b1aeb/south/frame_004.png",
+          "animations/falling_backward-e47b1aeb/south/frame_005.png",
+          "animations/falling_backward-e47b1aeb/south/frame_006.png"
+        ]
+      }
+    }
+  },
+  "export_version": "2.0",
+  "export_date": "2026-04-21T14:20:46.489826"
+}

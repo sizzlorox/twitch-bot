@@ -1,0 +1,49 @@
+{
+  "idle": {
+    "frameCount": 8,
+    "frames": [
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_000.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_001.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_002.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_003.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_004.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_005.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_006.png",
+      "/assets/avatars/ranger_anims/animations/animating-69592f6f/south/frame_007.png"
+    ]
+  },
+  "attack": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_000.png",
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_001.png",
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_002.png",
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_003.png",
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_004.png",
+      "/assets/avatars/ranger_anims/animations/cross_punch_attack-3f1ac299/south/frame_005.png"
+    ]
+  },
+  "hit": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_000.png",
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_001.png",
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_002.png",
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_003.png",
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_004.png",
+      "/assets/avatars/ranger_anims/animations/taking_a_punch-ebb019c0/south/frame_005.png"
+    ]
+  },
+  "death": {
+    "frameCount": 7,
+    "frames": [
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_000.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_001.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_002.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_003.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_004.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_005.png",
+      "/assets/avatars/ranger_anims/animations/falling_backward-a9211c98/south/frame_006.png"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "idle": {
+    "frameCount": 8,
+    "frames": [
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_000.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_001.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_002.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_003.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_004.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_005.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_006.png",
+      "/assets/avatars/goblin_anims/animations/animating-fd60e903/south/frame_007.png"
+    ]
+  },
+  "attack": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_000.png",
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_001.png",
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_002.png",
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_003.png",
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_004.png",
+      "/assets/avatars/goblin_anims/animations/cross_punch_attack-1bc46529/south/frame_005.png"
+    ]
+  },
+  "hit": {
+    "frameCount": 6,
+    "frames": [
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_000.png",
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_001.png",
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_002.png",
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_003.png",
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_004.png",
+      "/assets/avatars/goblin_anims/animations/taking_a_punch-8a9a11ef/south/frame_005.png"
+    ]
+  },
+  "death": {
+    "frameCount": 7,
+    "frames": [
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_000.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_001.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_002.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_003.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_004.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_005.png",
+      "/assets/avatars/goblin_anims/animations/falling_backward-e47b1aeb/south/frame_006.png"
+    ]
+  }
+}

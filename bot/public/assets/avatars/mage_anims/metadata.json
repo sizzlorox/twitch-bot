@@ -1,0 +1,70 @@
+{
+  "character": {
+    "id": "1651a2a2-80af-4318-972f-84eee072207f",
+    "name": "mage",
+    "prompt": "robed wizard mage, long purple robes, glowing staff, pointed hat, fantasy RPG spellcaster pixel art sprite",
+    "size": {
+      "width": 68,
+      "height": 68
+    },
+    "template_id": "mannequin",
+    "directions": 4,
+    "view": "side",
+    "created_at": "2026-04-21T11:53:56.242971+00:00"
+  },
+  "frames": {
+    "rotations": {
+      "south": "rotations/south.png",
+      "west": "rotations/west.png",
+      "east": "rotations/east.png",
+      "north": "rotations/north.png"
+    },
+    "animations": {
+      "animating-9e629ca9": {
+        "south": [
+          "animations/animating-9e629ca9/south/frame_000.png",
+          "animations/animating-9e629ca9/south/frame_001.png",
+          "animations/animating-9e629ca9/south/frame_002.png",
+          "animations/animating-9e629ca9/south/frame_003.png",
+          "animations/animating-9e629ca9/south/frame_004.png",
+          "animations/animating-9e629ca9/south/frame_005.png",
+          "animations/animating-9e629ca9/south/frame_006.png",
+          "animations/animating-9e629ca9/south/frame_007.png"
+        ]
+      },
+      "taking_a_punch-2a943eb9": {
+        "south": [
+          "animations/taking_a_punch-2a943eb9/south/frame_000.png",
+          "animations/taking_a_punch-2a943eb9/south/frame_001.png",
+          "animations/taking_a_punch-2a943eb9/south/frame_002.png",
+          "animations/taking_a_punch-2a943eb9/south/frame_003.png",
+          "animations/taking_a_punch-2a943eb9/south/frame_004.png",
+          "animations/taking_a_punch-2a943eb9/south/frame_005.png"
+        ]
+      },
+      "cross_punch_attack-3b3c6a9a": {
+        "south": [
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_000.png",
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_001.png",
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_002.png",
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_003.png",
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_004.png",
+          "animations/cross_punch_attack-3b3c6a9a/south/frame_005.png"
+        ]
+      },
+      "falling_backward-e8f9bc82": {
+        "south": [
+          "animations/falling_backward-e8f9bc82/south/frame_000.png",
+          "animations/falling_backward-e8f9bc82/south/frame_001.png",
+          "animations/falling_backward-e8f9bc82/south/frame_002.png",
+          "animations/falling_backward-e8f9bc82/south/frame_003.png",
+          "animations/falling_backward-e8f9bc82/south/frame_004.png",
+          "animations/falling_backward-e8f9bc82/south/frame_005.png",
+          "animations/falling_backward-e8f9bc82/south/frame_006.png"
+        ]
+      }
+    }
+  },
+  "export_version": "2.0",
+  "export_date": "2026-04-21T13:53:30.536128"
+}

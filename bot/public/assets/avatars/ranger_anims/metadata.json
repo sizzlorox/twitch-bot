@@ -1,0 +1,70 @@
+{
+  "character": {
+    "id": "52261687-77da-4d1c-af3c-ce8f70a20c27",
+    "name": "ranger",
+    "prompt": "forest ranger archer, green hooded cloak and leather armor, longbow, quiver of arrows, pixel art RPG game sprite",
+    "size": {
+      "width": 68,
+      "height": 68
+    },
+    "template_id": "mannequin",
+    "directions": 4,
+    "view": "side",
+    "created_at": "2026-04-21T11:58:59.322563+00:00"
+  },
+  "frames": {
+    "rotations": {
+      "south": "rotations/south.png",
+      "west": "rotations/west.png",
+      "east": "rotations/east.png",
+      "north": "rotations/north.png"
+    },
+    "animations": {
+      "taking_a_punch-ebb019c0": {
+        "south": [
+          "animations/taking_a_punch-ebb019c0/south/frame_000.png",
+          "animations/taking_a_punch-ebb019c0/south/frame_001.png",
+          "animations/taking_a_punch-ebb019c0/south/frame_002.png",
+          "animations/taking_a_punch-ebb019c0/south/frame_003.png",
+          "animations/taking_a_punch-ebb019c0/south/frame_004.png",
+          "animations/taking_a_punch-ebb019c0/south/frame_005.png"
+        ]
+      },
+      "animating-69592f6f": {
+        "south": [
+          "animations/animating-69592f6f/south/frame_000.png",
+          "animations/animating-69592f6f/south/frame_001.png",
+          "animations/animating-69592f6f/south/frame_002.png",
+          "animations/animating-69592f6f/south/frame_003.png",
+          "animations/animating-69592f6f/south/frame_004.png",
+          "animations/animating-69592f6f/south/frame_005.png",
+          "animations/animating-69592f6f/south/frame_006.png",
+          "animations/animating-69592f6f/south/frame_007.png"
+        ]
+      },
+      "falling_backward-a9211c98": {
+        "south": [
+          "animations/falling_backward-a9211c98/south/frame_000.png",
+          "animations/falling_backward-a9211c98/south/frame_001.png",
+          "animations/falling_backward-a9211c98/south/frame_002.png",
+          "animations/falling_backward-a9211c98/south/frame_003.png",
+          "animations/falling_backward-a9211c98/south/frame_004.png",
+          "animations/falling_backward-a9211c98/south/frame_005.png",
+          "animations/falling_backward-a9211c98/south/frame_006.png"
+        ]
+      },
+      "cross_punch_attack-3f1ac299": {
+        "south": [
+          "animations/cross_punch_attack-3f1ac299/south/frame_000.png",
+          "animations/cross_punch_attack-3f1ac299/south/frame_001.png",
+          "animations/cross_punch_attack-3f1ac299/south/frame_002.png",
+          "animations/cross_punch_attack-3f1ac299/south/frame_003.png",
+          "animations/cross_punch_attack-3f1ac299/south/frame_004.png",
+          "animations/cross_punch_attack-3f1ac299/south/frame_005.png"
+        ]
+      }
+    }
+  },
+  "export_version": "2.0",
+  "export_date": "2026-04-21T13:51:34.969219"
+}
