@@ -69,6 +69,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/wow', express.static(path.join(__dirname, 'public', 'wow')));
+app.use('/swg', express.static(path.join(__dirname, 'public', 'swg')));
+app.use('/squad', express.static(path.join(__dirname, 'public', 'squad')));
+app.use('/factorio', express.static(path.join(__dirname, 'public', 'factorio')));
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 
 const sse = new SSE();
@@ -291,7 +294,7 @@ app.post('/settings', (req, res) => {
     overlaySettings.splash = valid.includes(splash) ? splash : null;
   }
   if ('theme' in req.body) {
-    const validThemes = ['default', 'wow-classic'];
+    const validThemes = ['default', 'wow-classic', 'swg', 'squad', 'factorio'];
     overlaySettings.theme = validThemes.includes(req.body.theme) ? req.body.theme : 'default';
   }
   saveSettings(overlaySettings);

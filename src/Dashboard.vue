@@ -246,6 +246,33 @@ const themes = [
     sampleColor2: '#40ff80',
     barSample: 'Azeroth',
   },
+  {
+    key: 'swg',
+    label: 'Star Wars Galaxies',
+    icon: '🌌',
+    desc: 'Star Wars Galaxies MMO',
+    sampleColor: '#00d4e0',
+    sampleColor2: '#ff8c00',
+    barSample: 'Tatooine',
+  },
+  {
+    key: 'squad',
+    label: 'SQUAD',
+    icon: '🪖',
+    desc: 'SQUAD milsim tactical',
+    sampleColor: '#c19a6b',
+    sampleColor2: '#6b7c4a',
+    barSample: 'FOB Alpha',
+  },
+  {
+    key: 'factorio',
+    label: 'Factorio',
+    icon: '⚙️',
+    desc: 'Factorio industrial factory',
+    sampleColor: '#ff6600',
+    sampleColor2: '#5aa832',
+    barSample: 'FACTORY',
+  },
 ];
 
 const setTheme = (key) => {
@@ -1037,6 +1064,106 @@ onBeforeUnmount(() => {
       font-family: 'Palatino Linotype', serif;
       font-size: 0.45rem;
       letter-spacing: 0.05em;
+    }
+  }
+
+  &.swg {
+    background: linear-gradient(180deg, #000814 0%, #020d1a 100%);
+    .tp-chat {
+      background: rgba(0,8,20,0.92);
+      border: 1px solid #00d4e0;
+      border-radius: 1px;
+      box-shadow: 0 0 0 1px rgba(0,212,224,0.2), 0 0 8px rgba(0,212,224,0.15);
+    }
+    .tp-corner {
+      display: block;
+      border-color: #00d4e0;
+      border-style: solid;
+      border-width: 0;
+      background: transparent;
+      width: 5px; height: 5px;
+      &.tl { border-top-width: 1px; border-left-width: 1px; }
+      &.tr { border-top-width: 1px; border-right-width: 1px; }
+      &.bl { border-bottom-width: 1px; border-left-width: 1px; }
+      &.br { border-bottom-width: 1px; border-right-width: 1px; }
+    }
+    .tp-author { font-family: 'Century Gothic', sans-serif; font-weight: 700; }
+    .tp-text   { color: #c8e8f0; font-family: 'Century Gothic', sans-serif; }
+    .tp-colon  { color: rgba(0,212,224,0.4); }
+    .tp-bar {
+      background: linear-gradient(180deg, #020d1a, #000814);
+      border-top: 1px solid #00d4e0;
+      color: #00d4e0;
+      font-family: 'Century Gothic', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+
+  &.squad {
+    background: linear-gradient(180deg, #0d1008 0%, #141a0e 100%);
+    .tp-chat {
+      background: rgba(13,16,8,0.9);
+      border: 1px solid #6b7c4a;
+      border-radius: 0;
+      box-shadow: 0 0 0 1px rgba(74,93,58,0.4), 0 0 0 3px rgba(13,16,8,0.7);
+    }
+    .tp-corner {
+      display: block;
+      border-color: #c19a6b;
+      border-style: solid;
+      border-width: 0;
+      background: transparent;
+      width: 5px; height: 5px;
+      &.tl { border-top-width: 1px; border-left-width: 1px; }
+      &.tr { border-top-width: 1px; border-right-width: 1px; }
+      &.bl { border-bottom-width: 1px; border-left-width: 1px; }
+      &.br { border-bottom-width: 1px; border-right-width: 1px; }
+    }
+    .tp-author { font-family: 'Consolas', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+    .tp-text   { color: #e8e4d2; font-family: 'Consolas', monospace; }
+    .tp-colon  { color: rgba(193,154,107,0.5); }
+    .tp-bar {
+      background: linear-gradient(180deg, #1c2312, #0d1008);
+      border-top: 2px solid #6b7c4a;
+      color: #c19a6b;
+      font-family: 'Consolas', monospace;
+      font-size: 0.45rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+
+  &.factorio {
+    background: linear-gradient(180deg, #0e0e0e 0%, #1a1208 100%);
+    .tp-chat {
+      background: rgba(14,14,14,0.93);
+      border: 2px solid #cc4400;
+      border-radius: 0;
+      box-shadow: 0 0 0 1px rgba(255,102,0,0.12), 0 0 12px rgba(255,102,0,0.1);
+    }
+    .tp-corner {
+      display: block;
+      background: #383530;
+      border: 1px solid #cc4400;
+      border-radius: 50%;
+      width: 4px; height: 4px;
+    }
+    .tp-author { font-family: 'Consolas', monospace; font-weight: 700; text-shadow: 0 0 6px rgba(255,102,0,0.6); }
+    .tp-text   { color: #d4c89a; font-family: 'Consolas', monospace; }
+    .tp-colon  { color: rgba(255,102,0,0.4); }
+    .tp-bar {
+      background: linear-gradient(180deg, #1e1a10, #0e0e0e);
+      border-top: 2px solid #cc4400;
+      color: #ff6600;
+      font-family: 'Consolas', monospace;
+      font-size: 0.45rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      filter: drop-shadow(0 0 3px rgba(255,102,0,0.5));
     }
   }
 }

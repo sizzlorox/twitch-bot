@@ -3,12 +3,32 @@
 
     <transition name="splash-fade">
       <div v-if="splash" class="splash" :class="splash" :key="splash">
-        <div class="splash-bg"></div>
+        <div class="splash-bg" :style="splashBgStyle"></div>
         <div class="splash-frame" v-if="theme === 'wow-classic'">
           <div class="splash-frame-tl"></div>
           <div class="splash-frame-tr"></div>
           <div class="splash-frame-bl"></div>
           <div class="splash-frame-br"></div>
+        </div>
+        <div class="splash-frame" v-if="theme === 'swg'">
+          <div class="splash-frame-tl"></div>
+          <div class="splash-frame-tr"></div>
+          <div class="splash-frame-bl"></div>
+          <div class="splash-frame-br"></div>
+        </div>
+        <div class="splash-frame" v-if="theme === 'squad'">
+          <div class="splash-frame-tl"></div>
+          <div class="splash-frame-tr"></div>
+          <div class="splash-frame-bl"></div>
+          <div class="splash-frame-br"></div>
+          <div class="splash-frame-scan"></div>
+        </div>
+        <div class="splash-frame" v-if="theme === 'factorio'">
+          <div class="splash-frame-tl"></div>
+          <div class="splash-frame-tr"></div>
+          <div class="splash-frame-bl"></div>
+          <div class="splash-frame-br"></div>
+          <div class="splash-frame-scan"></div>
         </div>
         <div class="splash-content">
           <template v-if="splash === 'starting'">
@@ -36,6 +56,18 @@
       <div class="chat-frame-corner tr" v-if="theme === 'wow-classic'"></div>
       <div class="chat-frame-corner bl" v-if="theme === 'wow-classic'"></div>
       <div class="chat-frame-corner br" v-if="theme === 'wow-classic'"></div>
+      <div class="swg-corner tl" v-if="theme === 'swg'"></div>
+      <div class="swg-corner tr" v-if="theme === 'swg'"></div>
+      <div class="swg-corner bl" v-if="theme === 'swg'"></div>
+      <div class="swg-corner br" v-if="theme === 'swg'"></div>
+      <div class="squad-corner tl" v-if="theme === 'squad'"></div>
+      <div class="squad-corner tr" v-if="theme === 'squad'"></div>
+      <div class="squad-corner bl" v-if="theme === 'squad'"></div>
+      <div class="squad-corner br" v-if="theme === 'squad'"></div>
+      <div class="factorio-corner tl" v-if="theme === 'factorio'"></div>
+      <div class="factorio-corner tr" v-if="theme === 'factorio'"></div>
+      <div class="factorio-corner bl" v-if="theme === 'factorio'"></div>
+      <div class="factorio-corner br" v-if="theme === 'factorio'"></div>
       <transition-group name="fade">
         <div class="chat-message" v-for="msgData in recentMessages" :key="msgData.id">
           <span class="author" v-html="msgData.author" :style="{ color: msgData.authorColor }"></span>
@@ -437,12 +469,51 @@ fetch(`${apiBase}/rpg/events?limit=10`)
   .then(evs => { rpgEvents.value = evs; })
   .catch(() => {});
 
-const themeVars = computed(() => ({
-  '--splash-starting-img': `url('${apiBase}/wow/splash-starting.png')`,
-  '--splash-brb-img':      `url('${apiBase}/wow/splash-brb.png')`,
-  '--splash-ending-img':   `url('${apiBase}/wow/splash-ending.png')`,
-  '--chat-frame-img':      `url('${apiBase}/wow/chat-frame.png')`,
-}));
+const themeSplashDirs = {
+  'wow-classic': 'wow',
+  'swg':         'swg',
+  'squad':       'squad',
+  'factorio':    'factorio',
+};
+
+const splashBgStyle = computed(() => {
+  const dir = themeSplashDirs[theme.value];
+  if (!dir || !splash.value) return {};
+  return { backgroundImage: `url('${apiBase}/${dir}/splash-${splash.value}.png')` };
+});
+
+const themeVars = computed(() => {
+  if (theme.value === 'wow-classic') {
+    return {
+      '--splash-starting-img': `url('${apiBase}/wow/splash-starting.png')`,
+      '--splash-brb-img':      `url('${apiBase}/wow/splash-brb.png')`,
+      '--splash-ending-img':   `url('${apiBase}/wow/splash-ending.png')`,
+      '--chat-frame-img':      `url('${apiBase}/wow/chat-frame.png')`,
+    };
+  }
+  if (theme.value === 'swg') {
+    return {
+      '--splash-starting-img': `url('${apiBase}/swg/splash-starting.png')`,
+      '--splash-brb-img':      `url('${apiBase}/swg/splash-brb.png')`,
+      '--splash-ending-img':   `url('${apiBase}/swg/splash-ending.png')`,
+    };
+  }
+  if (theme.value === 'squad') {
+    return {
+      '--splash-starting-img': `url('${apiBase}/squad/splash-starting.png')`,
+      '--splash-brb-img':      `url('${apiBase}/squad/splash-brb.png')`,
+      '--splash-ending-img':   `url('${apiBase}/squad/splash-ending.png')`,
+    };
+  }
+  if (theme.value === 'factorio') {
+    return {
+      '--splash-starting-img': `url('${apiBase}/factorio/splash-starting.png')`,
+      '--splash-brb-img':      `url('${apiBase}/factorio/splash-brb.png')`,
+      '--splash-ending-img':   `url('${apiBase}/factorio/splash-ending.png')`,
+    };
+  }
+  return {};
+});
 
 const chatStyle = computed(() => ({
   width:  `${chatConfig.value.width}px`,
@@ -1216,4 +1287,729 @@ onBeforeUnmount(() => {
 .theme-wow-classic .splash-frame-tr { top: -10px;    right: -10px; }
 .theme-wow-classic .splash-frame-bl { bottom: -10px; left: -10px;  }
 .theme-wow-classic .splash-frame-br { bottom: -10px; right: -10px; }
+
+/* ═════════════════════════════════════════
+   STAR WARS GALAXIES THEME
+═════════════════════════════════════════ */
+
+/* -- Variables -- */
+.theme-swg {
+  --swg-cyan:     #00d4e0;
+  --swg-cyan-dim: #0099a8;
+  --swg-orange:   #ff8c00;
+  --swg-dark:     #000814;
+  --swg-panel:    #0a1628;
+  --swg-font:     'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+
+  --splash-starting-img: none;
+  --splash-brb-img:      none;
+  --splash-ending-img:   none;
+}
+
+/* -- Chat container -- */
+.theme-swg .chat-container {
+  background: rgba(0, 8, 20, 0.92);
+  backdrop-filter: none;
+  border-radius: 2px;
+  border: 1px solid var(--swg-cyan);
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 224, 0.2),
+    inset 0 0 0 1px rgba(0, 212, 224, 0.05),
+    0 0 20px rgba(0, 212, 224, 0.15),
+    0 0 60px rgba(0, 0, 20, 0.8);
+  padding: 0.875rem;
+}
+
+/* HUD bracket corners */
+.swg-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 10;
+  pointer-events: none;
+  border-color: var(--swg-cyan);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 3px rgba(0, 212, 224, 0.8));
+}
+.swg-corner.tl { top: -1px;    left: -1px;    border-top-width: 2px;    border-left-width: 2px;   }
+.swg-corner.tr { top: -1px;    right: -1px;   border-top-width: 2px;    border-right-width: 2px;  }
+.swg-corner.bl { bottom: -1px; left: -1px;    border-bottom-width: 2px; border-left-width: 2px;   }
+.swg-corner.br { bottom: -1px; right: -1px;   border-bottom-width: 2px; border-right-width: 2px;  }
+
+/* -- Chat messages -- */
+.theme-swg .chat-container .chat-message {
+  background: rgba(0, 212, 224, 0.04);
+  border: none;
+  border-left: 1px solid rgba(0, 212, 224, 0.2);
+  border-radius: 0;
+  padding: 0.15rem 0.4rem;
+  margin-bottom: 0.2rem;
+  font-family: var(--swg-font);
+  font-size: 0.875rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+
+  .author {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    filter: none;
+    text-shadow: 0 0 8px currentColor;
+  }
+  .colon {
+    color: rgba(0, 212, 224, 0.4);
+  }
+  .message {
+    color: #c8e8f0;
+    text-shadow: none;
+  }
+}
+
+/* -- Bottom bar -- */
+.theme-swg .bottom-bar {
+  background: linear-gradient(180deg, #020d1a 0%, #000814 100%);
+  border-top: 1px solid var(--swg-cyan);
+  backdrop-filter: none;
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 224, 0.1),
+    inset 0 1px 0 rgba(0, 212, 224, 0.15),
+    0 -4px 20px rgba(0, 0, 0, 0.8);
+
+  .bar-text {
+    font-family: var(--swg-font);
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #00d4e0 0%, #0099a8 40%, #e0f8ff 80%, #00d4e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 4px rgba(0, 212, 224, 0.6));
+  }
+
+  .rpg-badge {
+    color: var(--swg-cyan) !important;
+    background: rgba(0, 212, 224, 0.1) !important;
+    border-color: rgba(0, 212, 224, 0.35) !important;
+    font-family: var(--swg-font);
+    border-radius: 1px !important;
+    letter-spacing: 0.05em;
+  }
+  .ticker-text            { color: #a0c8d8 !important; font-family: var(--swg-font); letter-spacing: 0.05em; }
+  .ticker-text.boss       { color: #ff4444 !important; }
+  .ticker-text.monster    { color: var(--swg-orange) !important; }
+  .ticker-text.treasure   { color: var(--swg-cyan) !important; }
+  .ticker-text.training   { color: #40ff90 !important; }
+}
+
+/* -- Splash screens -- */
+.theme-swg .splash {
+  font-family: var(--swg-font);
+}
+
+.theme-swg .splash .splash-bg {
+  filter: brightness(0.5) saturate(1.2);
+}
+
+.theme-swg .splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0,8,20,0.6) 0%,
+    rgba(0,8,20,0.2) 35%,
+    rgba(0,8,20,0.2) 65%,
+    rgba(0,8,20,0.75) 100%
+  );
+  pointer-events: none;
+}
+
+.theme-swg .splash-content { z-index: 3; }
+.theme-swg .splash-glow    { z-index: 2; }
+
+.theme-swg .splash.starting {
+  background: linear-gradient(180deg, #000814 0%, #000d20 50%, #000408 100%);
+  .splash-eyebrow {
+    color: #00d4e0;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #00d4e0 0%, #0099a8 40%, #e0f8ff 60%, #00d4e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 224, 0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(0, 212, 224, 0.5); letter-spacing: 0.12em; }
+  .splash-glow { background: radial-gradient(circle, rgba(0,212,224,0.2) 0%, rgba(0,100,120,0.1) 40%, transparent 70%); }
+}
+
+.theme-swg .splash.brb {
+  background: linear-gradient(180deg, #0a0400 0%, #050200 50%, #000814 100%);
+  .splash-eyebrow {
+    color: var(--swg-orange);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff8c00 0%, #cc6600 40%, #ffcc80 60%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(255, 140, 0, 0.5); letter-spacing: 0.12em; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,140,0,0.2) 0%, rgba(180,80,0,0.1) 40%, transparent 70%); }
+}
+
+.theme-swg .splash.ending {
+  background: linear-gradient(180deg, #100005 0%, #0a0002 50%, #000814 100%);
+  .splash-eyebrow {
+    color: #cc3344;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff4466 0%, #cc2244 40%, #ff99bb 60%, #cc2244 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 50, 80, 0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(200, 50, 80, 0.5); letter-spacing: 0.12em; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,50,80,0.2) 0%, rgba(150,20,40,0.1) 40%, transparent 70%); }
+}
+
+/* SWG splash frame — HUD brackets */
+.theme-swg .splash-frame {
+  display: block;
+  position: absolute;
+  inset: 2.5rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.theme-swg .splash-frame-tl,
+.theme-swg .splash-frame-tr,
+.theme-swg .splash-frame-bl,
+.theme-swg .splash-frame-br {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-color: var(--swg-cyan);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 4px rgba(0, 212, 224, 0.8));
+}
+.theme-swg .splash-frame-tl { top: 0;    left: 0;    border-top-width: 2px;    border-left-width: 2px;   }
+.theme-swg .splash-frame-tr { top: 0;    right: 0;   border-top-width: 2px;    border-right-width: 2px;  }
+.theme-swg .splash-frame-bl { bottom: 0; left: 0;    border-bottom-width: 2px; border-left-width: 2px;   }
+.theme-swg .splash-frame-br { bottom: 0; right: 0;   border-bottom-width: 2px; border-right-width: 2px;  }
+
+/* ═════════════════════════════════════════
+   SQUAD THEME (milsim tactical HUD)
+═════════════════════════════════════════ */
+
+/* -- Variables -- */
+.theme-squad {
+  --squad-olive:     #4a5d3a;
+  --squad-olive-lt:  #6b7c4a;
+  --squad-tan:       #c19a6b;
+  --squad-tan-dim:   #8a6e4a;
+  --squad-orange:    #ff8c1a;
+  --squad-red:       #b23a2a;
+  --squad-dark:      #0d1008;
+  --squad-panel:     #141a0e;
+  --squad-font:      'Consolas', 'Roboto Mono', 'Courier New', monospace;
+
+  --splash-starting-img: none;
+  --splash-brb-img:      none;
+  --splash-ending-img:   none;
+}
+
+/* -- Chat container -- */
+.theme-squad .chat-container {
+  background: rgba(13, 16, 8, 0.9);
+  backdrop-filter: none;
+  border-radius: 0;
+  border: 1px solid var(--squad-olive-lt);
+  box-shadow:
+    0 0 0 1px rgba(74, 93, 58, 0.4),
+    inset 0 0 0 1px rgba(193, 154, 107, 0.08),
+    0 0 0 4px rgba(13, 16, 8, 0.7),
+    0 6px 24px rgba(0, 0, 0, 0.6);
+  padding: 0.875rem;
+}
+
+/* Tac-HUD corner brackets */
+.squad-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 10;
+  pointer-events: none;
+  border-color: var(--squad-tan);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 2px rgba(193, 154, 107, 0.7));
+}
+.squad-corner.tl { top: -1px;    left: -1px;    border-top-width: 2px;    border-left-width: 2px;   }
+.squad-corner.tr { top: -1px;    right: -1px;   border-top-width: 2px;    border-right-width: 2px;  }
+.squad-corner.bl { bottom: -1px; left: -1px;    border-bottom-width: 2px; border-left-width: 2px;   }
+.squad-corner.br { bottom: -1px; right: -1px;   border-bottom-width: 2px; border-right-width: 2px;  }
+
+/* -- Chat messages -- */
+.theme-squad .chat-container .chat-message {
+  background: rgba(74, 93, 58, 0.06);
+  border: none;
+  border-left: 2px solid rgba(193, 154, 107, 0.35);
+  border-radius: 0;
+  padding: 0.15rem 0.45rem;
+  margin-bottom: 0.2rem;
+  font-family: var(--squad-font);
+  font-size: 0.86rem;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+
+  .author {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    filter: none;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .colon {
+    color: rgba(193, 154, 107, 0.5);
+  }
+  .message {
+    color: #e8e4d2;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+  }
+}
+
+/* -- Bottom bar -- */
+.theme-squad .bottom-bar {
+  background: linear-gradient(180deg, #1c2312 0%, #0d1008 100%);
+  border-top: 2px solid var(--squad-olive-lt);
+  backdrop-filter: none;
+  box-shadow:
+    0 0 0 1px rgba(193, 154, 107, 0.25),
+    inset 0 1px 0 rgba(193, 154, 107, 0.2),
+    0 -4px 18px rgba(0, 0, 0, 0.7);
+
+  .bar-text {
+    font-family: var(--squad-font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #c19a6b 0%, #8a6e4a 40%, #e8d4b0 60%, #c19a6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 3px rgba(193, 154, 107, 0.5));
+  }
+
+  .rpg-badge {
+    color: var(--squad-tan) !important;
+    background: rgba(74, 93, 58, 0.25) !important;
+    border-color: rgba(193, 154, 107, 0.4) !important;
+    font-family: var(--squad-font);
+    border-radius: 0 !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ticker-text            { color: #c9c2a4 !important; font-family: var(--squad-font); letter-spacing: 0.04em; }
+  .ticker-text.boss       { color: var(--squad-red) !important; }
+  .ticker-text.monster    { color: var(--squad-orange) !important; }
+  .ticker-text.treasure   { color: var(--squad-tan) !important; }
+  .ticker-text.training   { color: var(--squad-olive-lt) !important; }
+}
+
+/* -- Splash screens -- */
+.theme-squad .splash {
+  font-family: var(--squad-font);
+}
+
+.theme-squad .splash .splash-bg {
+  filter: brightness(0.6) saturate(1.1) contrast(1.05);
+}
+
+.theme-squad .splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13,16,8,0.65) 0%,
+      rgba(13,16,8,0.2) 35%,
+      rgba(13,16,8,0.2) 65%,
+      rgba(13,16,8,0.8) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 3px
+    );
+  pointer-events: none;
+}
+
+.theme-squad .splash-content { z-index: 3; }
+.theme-squad .splash-glow    { z-index: 2; }
+
+.theme-squad .splash.starting {
+  background: linear-gradient(180deg, #0d1008 0%, #1a2010 50%, #080a04 100%);
+  .splash-eyebrow {
+    color: var(--squad-olive-lt);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #c19a6b 0%, #8a6e4a 40%, #e8d4b0 60%, #c19a6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(193, 154, 107, 0.6));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(193, 154, 107, 0.55); letter-spacing: 0.14em; text-transform: uppercase; }
+  .splash-glow { background: radial-gradient(circle, rgba(107,124,74,0.25) 0%, rgba(193,154,107,0.08) 40%, transparent 70%); }
+}
+
+.theme-squad .splash.brb {
+  background: linear-gradient(180deg, #1a1408 0%, #0d0a04 50%, #080604 100%);
+  .splash-eyebrow {
+    color: var(--squad-orange);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff8c1a 0%, #b2601a 40%, #ffc080 60%, #ff8c1a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(255, 140, 26, 0.6));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(255, 140, 26, 0.5); letter-spacing: 0.14em; text-transform: uppercase; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,140,26,0.2) 0%, rgba(178,90,20,0.1) 40%, transparent 70%); }
+}
+
+.theme-squad .splash.ending {
+  background: linear-gradient(180deg, #180808 0%, #0d0504 50%, #080404 100%);
+  .splash-eyebrow {
+    color: var(--squad-red);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #d94838 0%, #8a2a1e 40%, #f0a090 60%, #d94838 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(178, 58, 42, 0.65));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(178, 58, 42, 0.55); letter-spacing: 0.14em; text-transform: uppercase; }
+  .splash-glow { background: radial-gradient(circle, rgba(178,58,42,0.22) 0%, rgba(100,20,10,0.1) 40%, transparent 70%); }
+}
+
+/* Squad splash frame — tactical HUD brackets + scanline */
+.theme-squad .splash-frame {
+  display: block;
+  position: absolute;
+  inset: 2.5rem;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid rgba(193, 154, 107, 0.25);
+}
+
+.theme-squad .splash-frame-tl,
+.theme-squad .splash-frame-tr,
+.theme-squad .splash-frame-bl,
+.theme-squad .splash-frame-br {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-color: var(--squad-tan);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 3px rgba(193, 154, 107, 0.7));
+}
+.theme-squad .splash-frame-tl { top: -2px; left: -2px;  border-top-width: 3px; border-left-width: 3px;  }
+.theme-squad .splash-frame-tr { top: -2px; right: -2px; border-top-width: 3px; border-right-width: 3px; }
+.theme-squad .splash-frame-bl { bottom: -2px; left: -2px;  border-bottom-width: 3px; border-left-width: 3px;  }
+.theme-squad .splash-frame-br { bottom: -2px; right: -2px; border-bottom-width: 3px; border-right-width: 3px; }
+
+.theme-squad .splash-frame-scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    rgba(107, 124, 74, 0.05) 3px,
+    rgba(107, 124, 74, 0.05) 4px
+  );
+  pointer-events: none;
+}
+
+/* ═════════════════════════════════════════
+   FACTORIO THEME (industrial factory HUD)
+═════════════════════════════════════════ */
+
+.theme-factorio {
+  --fac-orange:     #ff6600;
+  --fac-orange-dim: #cc4400;
+  --fac-orange-lt:  #ff9944;
+  --fac-green:      #5aa832;
+  --fac-dark:       #0e0e0e;
+  --fac-panel:      #1c1a14;
+  --fac-grey:       #383530;
+  --fac-rust:       #7a4e28;
+  --fac-text:       #d4c89a;
+  --fac-font:       'Consolas', 'Roboto Mono', 'Courier New', monospace;
+
+  --splash-starting-img: none;
+  --splash-brb-img:      none;
+  --splash-ending-img:   none;
+}
+
+/* -- Chat container -- */
+.theme-factorio .chat-container {
+  background: rgba(14, 14, 14, 0.93);
+  backdrop-filter: none;
+  border-radius: 0;
+  border: 2px solid var(--fac-orange-dim);
+  box-shadow:
+    0 0 0 1px rgba(255, 102, 0, 0.12),
+    inset 0 0 0 1px rgba(255, 102, 0, 0.06),
+    0 0 24px rgba(255, 102, 0, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.7);
+  padding: 0.875rem;
+}
+
+/* Rivet-bolt corners */
+.factorio-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 10;
+  pointer-events: none;
+  background: var(--fac-grey);
+  border: 2px solid var(--fac-orange-dim);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 3px rgba(255, 102, 0, 0.7));
+}
+.factorio-corner.tl { top: -5px;    left: -5px;  }
+.factorio-corner.tr { top: -5px;    right: -5px; }
+.factorio-corner.bl { bottom: -5px; left: -5px;  }
+.factorio-corner.br { bottom: -5px; right: -5px; }
+
+/* -- Chat messages -- */
+.theme-factorio .chat-container .chat-message {
+  background: rgba(255, 102, 0, 0.04);
+  border: none;
+  border-left: 2px solid rgba(255, 102, 0, 0.3);
+  border-radius: 0;
+  padding: 0.15rem 0.45rem;
+  margin-bottom: 0.2rem;
+  font-family: var(--fac-font);
+  font-size: 0.86rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+
+  .author {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    filter: none;
+    text-shadow: 0 0 8px rgba(255, 102, 0, 0.6);
+  }
+  .colon {
+    color: rgba(255, 102, 0, 0.4);
+  }
+  .message {
+    color: var(--fac-text);
+    text-shadow: none;
+  }
+}
+
+/* -- Bottom bar -- */
+.theme-factorio .bottom-bar {
+  background: linear-gradient(180deg, #1e1a10 0%, #0e0e0e 100%);
+  border-top: 2px solid var(--fac-orange-dim);
+  backdrop-filter: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 102, 0, 0.15),
+    inset 0 1px 0 rgba(255, 102, 0, 0.2),
+    0 -4px 20px rgba(0, 0, 0, 0.8);
+
+  .bar-text {
+    font-family: var(--fac-font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff6600 0%, #cc4400 40%, #ffaa66 60%, #ff6600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 4px rgba(255, 102, 0, 0.5));
+  }
+
+  .rpg-badge {
+    color: var(--fac-orange) !important;
+    background: rgba(255, 102, 0, 0.12) !important;
+    border-color: rgba(255, 102, 0, 0.4) !important;
+    font-family: var(--fac-font);
+    border-radius: 0 !important;
+    letter-spacing: 0.06em;
+  }
+  .ticker-text            { color: var(--fac-text) !important; font-family: var(--fac-font); letter-spacing: 0.03em; }
+  .ticker-text.boss       { color: #ff3300 !important; }
+  .ticker-text.monster    { color: var(--fac-orange) !important; }
+  .ticker-text.treasure   { color: #ffd700 !important; }
+  .ticker-text.training   { color: var(--fac-green) !important; }
+  .ticker-text.idle       { color: rgba(212, 200, 154, 0.3) !important; }
+}
+
+/* -- Splash screens -- */
+.theme-factorio .splash {
+  font-family: var(--fac-font);
+}
+
+.theme-factorio .splash .splash-bg {
+  filter: brightness(0.6) saturate(1.2);
+}
+
+.theme-factorio .splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(14,14,14,0.5) 0%,
+    rgba(14,14,14,0.15) 35%,
+    rgba(14,14,14,0.15) 65%,
+    rgba(14,14,14,0.7) 100%
+  );
+  pointer-events: none;
+}
+
+.theme-factorio .splash-content { z-index: 3; }
+.theme-factorio .splash-glow    { z-index: 2; }
+
+.theme-factorio .splash.starting {
+  background: linear-gradient(180deg, #0e0e0e 0%, #1a1208 50%, #0a0a04 100%);
+  .splash-eyebrow { color: var(--fac-green); letter-spacing: 0.22em; }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    background: linear-gradient(135deg, #ff6600 0%, #cc4400 40%, #ffaa44 60%, #ff6600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255,102,0,0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(255, 102, 0, 0.6); font-style: italic; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,102,0,0.3) 0%, rgba(255,102,0,0.1) 40%, transparent 70%); }
+}
+
+.theme-factorio .splash.brb {
+  background: linear-gradient(180deg, #181200 0%, #0f0c00 50%, #0a0a00 100%);
+  .splash-eyebrow { color: #ffd700; letter-spacing: 0.22em; }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    background: linear-gradient(135deg, #ffd700 0%, #cc9900 40%, #fff0a0 60%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255,215,0,0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(255, 215, 0, 0.6); font-style: italic; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0.1) 40%, transparent 70%); }
+}
+
+.theme-factorio .splash.ending {
+  background: linear-gradient(180deg, #180400 0%, #0e0300 50%, #080000 100%);
+  .splash-eyebrow { color: #ff4422; letter-spacing: 0.22em; }
+  .splash-title {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    background: linear-gradient(135deg, #ff3300 0%, #991100 40%, #ff8866 60%, #cc2200 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255,50,0,0.7));
+    text-shadow: none;
+  }
+  .splash-sub  { color: rgba(255, 50, 0, 0.6); font-style: italic; }
+  .splash-glow { background: radial-gradient(circle, rgba(255,50,0,0.3) 0%, rgba(255,50,0,0.1) 40%, transparent 70%); }
+}
+
+/* Factorio splash frame — engineering bracket + scanline */
+.theme-factorio .splash-frame {
+  display: block;
+  position: absolute;
+  inset: 2.5rem;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid rgba(255, 102, 0, 0.2);
+}
+
+.theme-factorio .splash-frame-tl,
+.theme-factorio .splash-frame-tr,
+.theme-factorio .splash-frame-bl,
+.theme-factorio .splash-frame-br {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-color: var(--fac-orange);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 102, 0, 0.9));
+}
+.theme-factorio .splash-frame-tl { top: -2px;    left: -2px;  border-top-width: 3px; border-left-width: 3px;  }
+.theme-factorio .splash-frame-tr { top: -2px;    right: -2px; border-top-width: 3px; border-right-width: 3px; }
+.theme-factorio .splash-frame-bl { bottom: -2px; left: -2px;  border-bottom-width: 3px; border-left-width: 3px;  }
+.theme-factorio .splash-frame-br { bottom: -2px; right: -2px; border-bottom-width: 3px; border-right-width: 3px; }
+
+.theme-factorio .splash-frame-scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    rgba(255, 102, 0, 0.03) 3px,
+    rgba(255, 102, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
 </style>

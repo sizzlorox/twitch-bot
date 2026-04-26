@@ -1,2 +1,7 @@
 .env
 node_modules
+dist/
+bot/data/db.sqlite
+bot/data/db.sqlite-shm
+bot/data/db.sqlite-wal
+bot/data/settings.json
